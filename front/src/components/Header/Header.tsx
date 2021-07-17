@@ -14,6 +14,7 @@ import {
   Badge,
   MenuItem,
   Menu,
+  Button,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
@@ -68,7 +69,7 @@ const useStyles = makeStyles((theme: Theme) =>
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
       transition: theme.transitions.create('width'),
-      minWidth: '13vw',
+      minWidth: '15vw',
       [theme.breakpoints.up('md')]: {
         width: '20ch',
       },
@@ -173,7 +174,7 @@ export const Header = () => {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="static" color='transparent'>
         <Toolbar>
           <IconButton
             edge="start"
@@ -186,12 +187,13 @@ export const Header = () => {
           <Typography className={classes.title} variant="h6" noWrap>
             Дух приключений
           </Typography>
+          <div className={classes.grow} />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
-              placeholder='Например, "Горный Дагестан"'
+              placeholder='Например, "горный Дагестан"'
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -201,6 +203,7 @@ export const Header = () => {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+            {}
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
@@ -221,6 +224,8 @@ export const Header = () => {
             >
               <AccountCircle />
             </IconButton>
+            <Button color="inherit">Войти</Button>
+            <Button color="inherit">Зарегистрироваться</Button>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
