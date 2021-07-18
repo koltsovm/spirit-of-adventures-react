@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   alpha,
   makeStyles,
@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const Header = () => {
+export const Header: React.FC = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
