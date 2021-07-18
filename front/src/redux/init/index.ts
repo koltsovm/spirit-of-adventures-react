@@ -15,3 +15,20 @@ export interface UserState {
   user: User;
   isAuth: boolean;
 }
+
+export const initialUserState = {
+  user: {
+    routes: [],
+    createdRoutes: [],
+    lastname: '',
+    firstname: '',
+    phone: '',
+    about: '',
+    avatar: '',
+    id: '',
+    email: '',
+    username: '',
+  },
+  favourites: [],
+  isAuth: false,
+}
