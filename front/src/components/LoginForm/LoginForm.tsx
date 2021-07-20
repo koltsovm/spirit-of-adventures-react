@@ -14,5 +14,10 @@ export const LoginForm = () => {
 
   }
 
-  return <Form<FormTypes> onSubmit={onSubmit}></Form>;
+  return <Form<FormTypes> onSubmit={onSubmit} render={({handleSubmit, form, submitting}) => (
+    <form onSubmit={handleSubmit} noValidate>
+      <span>Вход</span>
+
+    </form>
+  )}/>;
 };
