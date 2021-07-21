@@ -1,4 +1,4 @@
-import { Form } from 'react-final-form';
+import { Field, Form } from 'react-final-form';
 
 interface FormTypes {
   firstName?: string;
@@ -14,10 +14,24 @@ export const LoginForm = () => {
 
   }
 
-  return <Form<FormTypes> onSubmit={onSubmit} render={({handleSubmit, form, submitting}) => (
+  return <Form<FormTypes> onSubmit={onSubmit} render={({handleSubmit, form, submitting, pristine, values }) => (
     <form onSubmit={handleSubmit} noValidate>
-      <span>Вход</span>
-
+      <div>
+        <span>Вход</span>
+        <Field name="username">
+          <div>
+            <label>Никнейм</label>
+            <input type="text" placeholder="Никнейм"/>
+          </div>
+        </Field>
+        <Field name="password">
+          <div>
+            <label>Пароль</label>
+            <input type="text" placeholder="Пароль"/>
+          </div>
+        </Field>
+      </div>
+      <button type="submit">Войти</button>
     </form>
   )}/>;
 };
