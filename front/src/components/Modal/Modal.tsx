@@ -8,14 +8,10 @@ interface ModalProps {
   modalType: ButtonTypes;
 }
 
-export const Modal: React.FC<ModalProps> = ({
-  isOpen,
-  onClose,
-  modalType
-}) => {
+export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, modalType }) => {
   return (
-    <Dialog open={isOpen} onClose={()=>onClose}>
-      {(modalType === 'login') ? <LoginForm setModal={onClose}/> : null}
+    <Dialog open={isOpen} onClose={() => onClose}>
+      {modalType === 'login' ? <LoginForm setModal={onClose} /> : null}
     </Dialog>
   );
 };
