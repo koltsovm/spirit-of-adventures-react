@@ -15,8 +15,7 @@ interface FormTypes {
 }
 
 export const LoginForm = ({setModal}: LoginProps) => {
-  const onSubmit = () => {};
-
+  const onSubmit = () => {}; // TODO onSubmit func
   return (
     <Form<FormTypes>
       onSubmit={onSubmit}
