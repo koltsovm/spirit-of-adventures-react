@@ -1,7 +1,8 @@
 import { Field, Form } from 'react-final-form';
+import { ButtonTypes } from '../Header/Header';
 
 interface LoginProps {
-  setModal: () => void;
+  setModal: (buttonType: ButtonTypes) => void;
 }
 
 interface FormTypes {
@@ -21,7 +22,7 @@ export const LoginForm = ({setModal}: LoginProps) => {
       onSubmit={onSubmit}
       render={({ handleSubmit, form, submitting, pristine, values }) => (
         <form onSubmit={handleSubmit} noValidate>
-          <div>
+          <div className="form">
             <span>Вход</span>
             <Field name="username">
               <div>
