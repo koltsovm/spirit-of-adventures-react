@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   alpha,
   makeStyles,
@@ -14,6 +14,7 @@ import {
   Badge,
   MenuItem,
   Menu,
+  Button,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
@@ -21,6 +22,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { Modal } from '../Modal/Modal';
+
+// Type for button identification when open modal
+export type ButtonTypes = 'login' | 'signup' | null;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -68,7 +73,7 @@ const useStyles = makeStyles((theme: Theme) =>
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
       transition: theme.transitions.create('width'),
-      minWidth: '13vw',
+      minWidth: '15vw',
       [theme.breakpoints.up('md')]: {
         width: '20ch',
       },
@@ -88,7 +93,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const Header = () => {
+export const Header: React.FC = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -171,9 +176,29 @@ export const Header = () => {
     </Menu>
   );
 
+  // For modal window
+  const [modalState, setModalState] = useState(false);
+  const [buttonType, setButtonType] = useState<ButtonTypes>(null);
+  const [loginButtonState, setLoginButtonState] = useState(false);
+  const [signUpButtonState, setSignUpButtonState] = useState(false);
+
+  const toggleModal = (buttonType: ButtonTypes) => {
+    if (buttonType === 'login') {
+      setModalState(!modalState);
+      setLoginButtonState(!loginButtonState);
+      setButtonType('login');
+    }
+
+    if (buttonType === 'signup') {
+      setModalState(!modalState);
+      setSignUpButtonState(!signUpButtonState);
+      setButtonType('signup');
+    }
+  };
+
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="static" color="transparent">
         <Toolbar>
           <IconButton
             edge="start"
@@ -186,12 +211,13 @@ export const Header = () => {
           <Typography className={classes.title} variant="h6" noWrap>
             Дух приключений
           </Typography>
+          <div className={classes.grow} />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
-              placeholder='Например, "Горный Дагестан"'
+              placeholder='Например, "горный Дагестан"'
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -201,6 +227,7 @@ export const Header = () => {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+            {}
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
@@ -221,6 +248,12 @@ export const Header = () => {
             >
               <AccountCircle />
             </IconButton>
+            <Button color="inherit" onClick={() => toggleModal('signup')}>
+              Войти
+            </Button>
+            <Button color="inherit" onClick={() => toggleModal('login')}>
+              Зарегистрироваться
+            </Button>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
@@ -237,6 +270,7 @@ export const Header = () => {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      <Modal isOpen={modalState} onClose={toggleModal} modalType={buttonType} />
     </div>
   );
 };
