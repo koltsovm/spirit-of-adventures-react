@@ -22,6 +22,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { Modal } from '../Modal/Modal';
+
+// Type for button identification when open modal
+export type ButtonTypes = 'login' | 'signup' | null;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -172,9 +176,29 @@ export const Header: React.FC = () => {
     </Menu>
   );
 
+  // For modal window
+  const [modalState, setModalState] = useState(false);
+  const [buttonType, setButtonType] = useState<ButtonTypes>(null);
+  const [loginButtonState, setLoginButtonState] = useState(false);
+  const [signUpButtonState, setSignUpButtonState] = useState(false);
+
+  const toggleModal = (buttonType: ButtonTypes) => {
+    if (buttonType === 'login') {
+      setModalState(!modalState);
+      setLoginButtonState(!loginButtonState);
+      setButtonType('login');
+    }
+
+    if (buttonType === 'signup') {
+      setModalState(!modalState);
+      setSignUpButtonState(!signUpButtonState);
+      setButtonType('signup');
+    }
+  };
+
   return (
     <div className={classes.grow}>
-      <AppBar position="static" color='transparent'>
+      <AppBar position="static" color="transparent">
         <Toolbar>
           <IconButton
             edge="start"
@@ -224,8 +248,12 @@ export const Header: React.FC = () => {
             >
               <AccountCircle />
             </IconButton>
-            <Button color="inherit">Войти</Button>
-            <Button color="inherit">Зарегистрироваться</Button>
+            <Button color="inherit" onClick={() => toggleModal('signup')}>
+              Войти
+            </Button>
+            <Button color="inherit" onClick={() => toggleModal('login')}>
+              Зарегистрироваться
+            </Button>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
@@ -242,6 +270,7 @@ export const Header: React.FC = () => {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      <Modal isOpen={modalState} onClose={toggleModal} modalType={buttonType} />
     </div>
   );
 };
