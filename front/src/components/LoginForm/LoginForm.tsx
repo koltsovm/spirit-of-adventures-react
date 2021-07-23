@@ -1,9 +1,9 @@
 import { Grid, makeStyles, Paper, Theme } from '@material-ui/core';
-import { TextField } from '@material-ui/core';
-import { GridSize } from '@material-ui/core';
+import { TextField, GridSize } from '@material-ui/core';
 import { ReactNode } from 'react';
 import { Form } from 'react-final-form';
 import { ButtonTypes } from '../Header/Header';
+import * as yup from 'yup';
 
 interface LoginProps {
   setModal: (buttonType: ButtonTypes) => void;
@@ -23,11 +23,11 @@ interface FormField {
   field: ReactNode;
 }
 
-const useStyles = makeStyles((theme: Theme) =>({
+const useStyles = makeStyles((theme: Theme) => ({
   formWrapper: {
-    margin: "1vh",
-  }
-}))
+    margin: '1vh',
+  },
+}));
 
 export const LoginForm = ({ setModal }: LoginProps) => {
   const classes = useStyles();
@@ -123,7 +123,7 @@ export const LoginForm = ({ setModal }: LoginProps) => {
                 justifyContent="center"
                 spacing={2}
               >
-                {formFields.map((item, idx)=>(
+                {formFields.map((item, idx) => (
                   <Grid item xs={item.size} key={idx}>
                     {item.field}
                   </Grid>
