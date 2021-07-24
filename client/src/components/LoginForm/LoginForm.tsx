@@ -3,7 +3,6 @@ import { TextField, GridSize } from '@material-ui/core';
 import { ReactNode } from 'react';
 import { Form } from 'react-final-form';
 import { ButtonTypes } from '../Header/Header';
-import * as yup from 'yup';
 
 interface LoginProps {
   setModal: (buttonType: ButtonTypes) => void;
@@ -26,7 +25,14 @@ interface FormField {
 const useStyles = makeStyles((theme: Theme) => ({
   formWrapper: {
     margin: '1vh',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '25px',
   },
+  formTitle: {
+    textAlign: 'center',
+    margin: '10px',
+  }
 }));
 
 export const LoginForm = ({ setModal }: LoginProps) => {
@@ -114,12 +120,12 @@ export const LoginForm = ({ setModal }: LoginProps) => {
       render={({ handleSubmit, form, submitting, pristine, values }) => (
         <form onSubmit={handleSubmit} noValidate>
           <div className={classes.formWrapper}>
-            <span>Вход</span>
+            <span className={classes.formTitle}>Вход</span>
             <Paper>
               <Grid
                 container
                 direction="column"
-                alignItems="flex-start"
+                alignItems="center"
                 justifyContent="center"
                 spacing={2}
               >
