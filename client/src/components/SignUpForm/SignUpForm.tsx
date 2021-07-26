@@ -1,10 +1,10 @@
 import { Grid, makeStyles, Paper, Theme } from '@material-ui/core';
 import { TextField, GridSize } from '@material-ui/core';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { Form } from 'react-final-form';
 import { ButtonTypes } from '../Header/Header';
 
-interface LoginProps {
+interface SignUpProps {
   setModal: (buttonType: ButtonTypes) => void;
 }
 
@@ -35,9 +35,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-export const LoginForm = ({ setModal }: LoginProps) => {
+export const SignUpForm = ({ setModal }: SignUpProps) => {
   const classes = useStyles();
   const onSubmit = () => {}; // TODO onSubmit func
+
+  useEffect(() => {
+    console.log('FORM');
+    
+  }, [])
 
   const formFields: FormField[] = [
     {
