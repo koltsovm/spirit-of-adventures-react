@@ -1,17 +1,17 @@
 import Dialog from '@material-ui/core/Dialog';
 import { ButtonTypes } from '../Header/Header';
-import { LoginForm } from '../LoginForm/LoginForm';
+import { SignUpForm } from '../SignUpForm/SignUpForm';
 
 interface ModalProps {
   isOpen: boolean;
-  onClose: (buttonType: ButtonTypes) => void;
+  onClose: () => void;
   modalType: ButtonTypes;
 }
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, modalType }) => {
   return (
-    <Dialog open={isOpen} onClose={() => onClose}>
-      {modalType === 'login' ? <LoginForm setModal={onClose} /> : null}
+    <Dialog open={isOpen} onClose={onClose}>
+      {modalType === 'signup' ? <SignUpForm setModal={onClose} /> : null}
     </Dialog>
   );
 };

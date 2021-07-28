@@ -25,7 +25,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import { Modal } from '../Modal/Modal';
 
 // Type for button identification when open modal
-export type ButtonTypes = 'login' | 'signup' | null;
+export type ButtonTypes = 'login' | 'signup' | string;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -178,21 +178,29 @@ export const Header: React.FC = () => {
 
   // For modal window
   const [modalState, setModalState] = useState(false);
-  const [buttonType, setButtonType] = useState<ButtonTypes>(null);
-  const [loginButtonState, setLoginButtonState] = useState(false);
-  const [signUpButtonState, setSignUpButtonState] = useState(false);
+  const [buttonType, setButtonType] = useState('');
+ 
+  const signUpSetter = () => {
+    setButtonType('signup')
+  }
 
-  const toggleModal = (buttonType: ButtonTypes) => {
+  const toggleModal = () => {
     if (buttonType === 'login') {
-      setModalState(!modalState);
-      setLoginButtonState(!loginButtonState);
-      setButtonType('login');
+      setModalState(true);
+      // setLoginButtonState(!loginButtonState);
+      // setButtonType(null);
     }
 
     if (buttonType === 'signup') {
+      console.log('modal IF');
+      
       setModalState(!modalState);
-      setSignUpButtonState(!signUpButtonState);
-      setButtonType('signup');
+      // setSignUpButtonState(!signUpButtonState);
+      // setButtonType(null);
+    }
+
+    if (!buttonType) {
+      setModalState(false);
     }
   };
 
@@ -248,10 +256,22 @@ export const Header: React.FC = () => {
             >
               <AccountCircle />
             </IconButton>
-            <Button color="inherit" onClick={() => toggleModal('signup')}>
+            <Button
+              color="inherit"
+              onClick={() => {
+                setButtonType('login');
+                toggleModal();
+              }}
+            >
               Войти
             </Button>
-            <Button color="inherit" onClick={() => toggleModal('login')}>
+            <Button
+              color="inherit"
+              onClick={() => {
+                setButtonType('signup');
+                toggleModal();
+              }}
+            >
               Зарегистрироваться
             </Button>
           </div>
