@@ -25,7 +25,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import { Modal } from '../Modal/Modal';
 
 // Type for button identification when open modal
-export type ButtonTypes = 'login' | 'signup' | null;
+export type ButtonTypes = 'login' | 'signup' | string;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -178,9 +178,11 @@ export const Header: React.FC = () => {
 
   // For modal window
   const [modalState, setModalState] = useState(false);
-  const [buttonType, setButtonType] = useState<ButtonTypes>(null);
-  // const [loginButtonState, setLoginButtonState] = useState(false);
-  // const [signUpButtonState, setSignUpButtonState] = useState(false);
+  const [buttonType, setButtonType] = useState('');
+ 
+  const signUpSetter = () => {
+    setButtonType('signup')
+  }
 
   const toggleModal = () => {
     if (buttonType === 'login') {
@@ -190,6 +192,8 @@ export const Header: React.FC = () => {
     }
 
     if (buttonType === 'signup') {
+      console.log('modal IF');
+      
       setModalState(!modalState);
       // setSignUpButtonState(!signUpButtonState);
       // setButtonType(null);

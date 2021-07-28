@@ -49,59 +49,11 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
       size: 12,
       field: (
         <TextField
-          type="text"
-          label="Имя"
-          name="firstName"
-          margin="none"
-          required={true}
-        />
-      ),
-    },
-    {
-      size: 12,
-      field: (
-        <TextField
-          type="text"
-          label="Фамилия"
-          name="lastname"
-          margin="none"
-          required={false}
-        />
-      ),
-    },
-    {
-      size: 12,
-      field: (
-        <TextField
-          type="text"
-          label="Никнейм"
-          name="username"
-          margin="none"
-          required={true}
-        />
-      ),
-    },
-    {
-      size: 12,
-      field: (
-        <TextField
           type="email"
           label="E-mail"
           name="email"
           margin="none"
           required={true}
-        />
-      ),
-    },
-    {
-      size: 12,
-      field: (
-        <TextField
-          type="text"
-          label="Город"
-          name="city"
-          margin="none"
-          required={false}
         />
       ),
     },
@@ -125,7 +77,7 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
       render={({ handleSubmit, form, submitting, pristine, values }) => (
         <form onSubmit={handleSubmit} noValidate>
           <div className={classes.formWrapper}>
-            <span className={classes.formTitle}>Регистрация</span>
+            <span className={classes.formTitle}>Вход</span>
             <Paper>
               <Grid
                 container
@@ -141,7 +93,7 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
                 ))}
               </Grid>
               <Grid>
-                <button type="submit">Зарегистрироваться</button>
+                <button type="submit">Войти</button>
               </Grid>
             </Paper>
           </div>
