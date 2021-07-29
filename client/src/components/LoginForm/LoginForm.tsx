@@ -35,14 +35,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-export const SignUpForm = ({ setModal }: SignUpProps) => {
+export const LoginForm = ({ setModal }: SignUpProps) => {
   const classes = useStyles();
   const onSubmit = () => {}; // TODO onSubmit func
-
-  useEffect(() => {
-    console.log('FORM');
-    
-  }, [])
 
   const formFields: FormField[] = [
     {

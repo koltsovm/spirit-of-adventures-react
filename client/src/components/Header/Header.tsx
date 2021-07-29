@@ -178,31 +178,18 @@ export const Header: React.FC = () => {
 
   // For modal window
   const [modalState, setModalState] = useState(false);
-  const [buttonType, setButtonType] = useState('');
- 
-  const signUpSetter = () => {
-    setButtonType('signup')
-  }
+  // const [buttonType, setButtonType] = useState('');
+  const [loginButton, setLoginButton] = useState(false);
+  const [signUpButton, setSignUpButton] = useState(false);
 
   const toggleModal = () => {
-    if (buttonType === 'login') {
-      setModalState(true);
-      // setLoginButtonState(!loginButtonState);
-      // setButtonType(null);
-    }
-
-    if (buttonType === 'signup') {
-      console.log('modal IF');
-      
-      setModalState(!modalState);
-      // setSignUpButtonState(!signUpButtonState);
-      // setButtonType(null);
-    }
-
-    if (!buttonType) {
-      setModalState(false);
-    }
+    setModalState(!modalState);
+    setLoginButton(false);
+    setSignUpButton(false);
   };
+
+  const isLoginButton = () => setLoginButton(true);
+  const isSignUpButton = () => setSignUpButton(true);
 
   return (
     <div className={classes.grow}>
@@ -259,8 +246,8 @@ export const Header: React.FC = () => {
             <Button
               color="inherit"
               onClick={() => {
-                setButtonType('login');
                 toggleModal();
+                isLoginButton();
               }}
             >
               Войти
@@ -268,8 +255,8 @@ export const Header: React.FC = () => {
             <Button
               color="inherit"
               onClick={() => {
-                setButtonType('signup');
                 toggleModal();
+                isSignUpButton();
               }}
             >
               Зарегистрироваться
@@ -290,7 +277,7 @@ export const Header: React.FC = () => {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-      <Modal isOpen={modalState} onClose={toggleModal} modalType={buttonType} />
+      <Modal isOpen={modalState} onClose={toggleModal} isLoginButton={loginButton} isSignUpButton={signUpButton} />
     </div>
   );
 };

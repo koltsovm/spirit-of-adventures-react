@@ -39,11 +39,6 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
   const classes = useStyles();
   const onSubmit = () => {}; // TODO onSubmit func
 
-  useEffect(() => {
-    console.log('FORM');
-    
-  }, [])
-
   const formFields: FormField[] = [
     {
       size: 12,
