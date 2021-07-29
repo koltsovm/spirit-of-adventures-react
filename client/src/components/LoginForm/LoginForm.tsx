@@ -1,6 +1,6 @@
-import { Grid, makeStyles, Paper, Theme } from '@material-ui/core';
+import { Button, Grid, makeStyles, Paper, Theme } from '@material-ui/core';
 import { TextField, GridSize } from '@material-ui/core';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import { Form } from 'react-final-form';
 import { ButtonTypes } from '../Header/Header';
 
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   formTitle: {
     textAlign: 'center',
     margin: '10px',
-  }
+  },
 }));
 
 export const LoginForm = ({ setModal }: SignUpProps) => {
@@ -73,7 +73,7 @@ export const LoginForm = ({ setModal }: SignUpProps) => {
         <form onSubmit={handleSubmit} noValidate>
           <div className={classes.formWrapper}>
             <span className={classes.formTitle}>Вход</span>
-            <Paper>
+            <Paper elevation={0}>
               <Grid
                 container
                 direction="column"
@@ -86,9 +86,15 @@ export const LoginForm = ({ setModal }: SignUpProps) => {
                     {item.field}
                   </Grid>
                 ))}
-              </Grid>
-              <Grid>
-                <button type="submit">Войти</button>
+                <Grid
+                  item
+                  direction="column"
+                  alignItems="center"
+                  justifyContent="center"
+                  spacing={2}
+                  >
+                  <Button variant="outlined" type="submit">Войти</Button>
+                </Grid>
               </Grid>
             </Paper>
           </div>
