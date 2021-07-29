@@ -33,12 +33,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
     margin: '10px',
   },
-  formField: {
-    minWidth: '30vw',
-  }
 }));
 
-export const SignUpForm = ({ setModal }: SignUpProps) => {
+export const LoginForm = ({ setModal }: SignUpProps) => {
   const classes = useStyles();
   const onSubmit = () => {}; // TODO onSubmit func
 
@@ -47,46 +44,6 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
       size: 12,
       field: (
         <TextField
-          className={classes.formField}
-          type="text"
-          label="Имя"
-          name="firstName"
-          margin="none"
-          required={true}
-        />
-      ),
-    },
-    {
-      size: 12,
-      field: (
-        <TextField
-          className={classes.formField}
-          type="text"
-          label="Фамилия"
-          name="lastname"
-          margin="none"
-          required={false}
-        />
-      ),
-    },
-    {
-      size: 12,
-      field: (
-        <TextField
-          className={classes.formField}
-          type="text"
-          label="Никнейм"
-          name="username"
-          margin="none"
-          required={true}
-        />
-      ),
-    },
-    {
-      size: 12,
-      field: (
-        <TextField
-          className={classes.formField}
           type="email"
           label="E-mail"
           name="email"
@@ -99,20 +56,6 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
       size: 12,
       field: (
         <TextField
-          className={classes.formField}
-          type="text"
-          label="Город"
-          name="city"
-          margin="none"
-          required={false}
-        />
-      ),
-    },
-    {
-      size: 12,
-      field: (
-        <TextField
-          className={classes.formField}
           type="password"
           label="Пароль"
           name="city"
@@ -129,7 +72,7 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
       render={({ handleSubmit, form, submitting, pristine, values }) => (
         <form onSubmit={handleSubmit} noValidate>
           <div className={classes.formWrapper}>
-            <span className={classes.formTitle}>Регистрация</span>
+            <span className={classes.formTitle}>Вход</span>
             <Paper elevation={0}>
               <Grid
                 container
@@ -149,10 +92,8 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
                   alignItems="center"
                   justifyContent="center"
                   spacing={2}
-                >
-                  <Button variant="outlined" type="submit">
-                    Зарегистрироваться
-                  </Button>
+                  >
+                  <Button variant="outlined" type="submit">Войти</Button>
                 </Grid>
               </Grid>
             </Paper>
