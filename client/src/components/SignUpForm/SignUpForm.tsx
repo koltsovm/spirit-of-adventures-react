@@ -1,6 +1,6 @@
-import { Grid, makeStyles, Paper, Theme } from '@material-ui/core';
+import { Button, Grid, makeStyles, Paper, Theme } from '@material-ui/core';
 import { TextField, GridSize } from '@material-ui/core';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import { Form } from 'react-final-form';
 import { ButtonTypes } from '../Header/Header';
 
@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   formTitle: {
     textAlign: 'center',
     margin: '10px',
+  },
+  formField: {
+    minWidth: '30vw',
   }
 }));
 
@@ -44,6 +47,7 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
       size: 12,
       field: (
         <TextField
+          className={classes.formField}
           type="text"
           label="Имя"
           name="firstName"
@@ -56,6 +60,7 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
       size: 12,
       field: (
         <TextField
+          className={classes.formField}
           type="text"
           label="Фамилия"
           name="lastname"
@@ -68,6 +73,7 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
       size: 12,
       field: (
         <TextField
+          className={classes.formField}
           type="text"
           label="Никнейм"
           name="username"
@@ -80,6 +86,7 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
       size: 12,
       field: (
         <TextField
+          className={classes.formField}
           type="email"
           label="E-mail"
           name="email"
@@ -92,6 +99,7 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
       size: 12,
       field: (
         <TextField
+          className={classes.formField}
           type="text"
           label="Город"
           name="city"
@@ -104,6 +112,7 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
       size: 12,
       field: (
         <TextField
+          className={classes.formField}
           type="password"
           label="Пароль"
           name="city"
@@ -121,7 +130,7 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
         <form onSubmit={handleSubmit} noValidate>
           <div className={classes.formWrapper}>
             <span className={classes.formTitle}>Регистрация</span>
-            <Paper>
+            <Paper elevation={0}>
               <Grid
                 container
                 direction="column"
@@ -134,9 +143,17 @@ export const SignUpForm = ({ setModal }: SignUpProps) => {
                     {item.field}
                   </Grid>
                 ))}
-              </Grid>
-              <Grid>
-                <button type="submit">Зарегистрироваться</button>
+                <Grid
+                  item
+                  direction="column"
+                  alignItems="center"
+                  justifyContent="center"
+                  spacing={2}
+                >
+                  <Button variant="outlined" type="submit">
+                    Зарегистрироваться
+                  </Button>
+                </Grid>
               </Grid>
             </Paper>
           </div>
