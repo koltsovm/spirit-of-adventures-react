@@ -10,7 +10,9 @@ const authRouter = require('./routes/auth');
 const { PORT } = process.env || 3001;
 
 const app = express();
+
 dbConnect();
+
 useMiddleware(app);
 
 app.use(
