@@ -1,3 +1,4 @@
+import { UnsetUserAction } from './../types/index';
 import { ThunkAction } from 'redux-thunk';
 import { UserState } from '../init';
 import { SetUserAction, Types } from '../types';
@@ -116,6 +117,19 @@ export const signUp =
           email,
           username,
         },
+      });
+    }
+  };
+
+export const logout =
+  (): ThunkAction<void, UserState, unknown, UnsetUserAction> =>
+  async (dispatch) => {
+    const response = await fetch('/logout');
+
+    if (response.status === 200) {
+      dispatch({
+        type: Types.UNSET_USER,
+        payload: { id: '', email: '', username: '' },
       });
     }
   };
