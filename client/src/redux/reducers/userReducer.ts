@@ -8,6 +8,9 @@ export const userReducer = (
     case Types.SET_USER:
       return { ...state, user: action.payload, isAuth: true };
 
+    case Types.UNSET_USER:
+      return { ...state, user: action.payload, isAuth: false };
+
     default:
       return state;
   }
