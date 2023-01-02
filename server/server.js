@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const logger = require('morgan');
-const dbConnect = require('./db/dbConnect');
+const dbConnect = require('../db/dbConnect');
 
 const { PORT } = process.env || 3001;
 
