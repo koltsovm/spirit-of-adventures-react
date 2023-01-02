@@ -1,5 +1,5 @@
-import './App.css';
-import { Header } from './components/Header/Header';
+import '../index.scss';
+import { Header } from '../components/Header/Header';
 
 export const App: React.FC = () => {
   return (
