@@ -1,7 +1,7 @@
 import Dialog from '@material-ui/core/Dialog';
-import {  } from '../Header/Header';
-import { LoginForm } from '../LoginForm/LoginForm';
-import { SignUpForm } from '../SignUpForm/SignUpForm';
+import {} from '../header/header';
+import { LoginForm } from '../forms/login-form';
+import { SignUpForm } from '../forms/sign-up-form';
 
 interface ModalProps {
   isOpen: boolean;
@@ -10,7 +10,12 @@ interface ModalProps {
   isSignUpButton: boolean;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, isLoginButton, isSignUpButton }) => {
+export const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  isLoginButton,
+  isSignUpButton,
+}) => {
   return (
     <Dialog open={isOpen} onClose={onClose}>
       {isSignUpButton ? <SignUpForm setModal={onClose} /> : null}

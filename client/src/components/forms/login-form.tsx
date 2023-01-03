@@ -2,7 +2,7 @@ import { Button, Grid, makeStyles, Paper, Theme } from '@material-ui/core';
 import { TextField, GridSize } from '@material-ui/core';
 import { ReactNode } from 'react';
 import { Form } from 'react-final-form';
-import { ButtonTypes } from '../Header/Header';
+import { ButtonTypes } from '../header/header';
 
 interface SignUpProps {
   setModal: (buttonType: ButtonTypes) => void;
@@ -92,8 +92,10 @@ export const LoginForm = ({ setModal }: SignUpProps) => {
                   alignItems="center"
                   justifyContent="center"
                   spacing={2}
-                  >
-                  <Button variant="outlined" type="submit">Войти</Button>
+                >
+                  <Button variant="outlined" type="submit">
+                    Войти
+                  </Button>
                 </Grid>
               </Grid>
             </Paper>
