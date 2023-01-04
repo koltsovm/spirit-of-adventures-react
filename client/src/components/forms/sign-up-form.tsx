@@ -2,7 +2,7 @@ import { Button, Grid, makeStyles, Paper, Theme } from '@material-ui/core';
 import { TextField, GridSize } from '@material-ui/core';
 import { ReactNode } from 'react';
 import { Form } from 'react-final-form';
-import { ButtonTypes } from '../Header/Header';
+import { ButtonTypes } from '../header/header';
 
 interface SignUpProps {
   setModal: (buttonType: ButtonTypes) => void;
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   formField: {
     minWidth: '30vw',
-  }
+  },
 }));
 
 export const SignUpForm = ({ setModal }: SignUpProps) => {

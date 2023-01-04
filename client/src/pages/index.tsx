@@ -1,5 +1,5 @@
 import '../index.scss';
-import { Header } from '../components/Header/Header';
+import { Header } from '../components/header/header';
 
 export const App: React.FC = () => {
   return (
@@ -7,4 +7,4 @@ export const App: React.FC = () => {
       <Header />
     </>
   );
-}
+};

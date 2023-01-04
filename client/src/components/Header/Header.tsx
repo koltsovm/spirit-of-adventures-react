@@ -22,7 +22,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { Modal } from '../Modal/Modal';
+import { Modal } from '../modals/auth-modal';
 
 // Type for button identification when open modal
 export type ButtonTypes = 'login' | 'signup' | string;
