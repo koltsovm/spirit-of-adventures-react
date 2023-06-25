@@ -13,10 +13,10 @@ const dbConnect = async () => {
     });
 
     console.log(`Database connected: ${connect.connection.host}`);
-  } catch (error) {
+  } catch (error: any) {
     console.log(`Error: ${error.message}`);
     process.exit(1);
   }
 };
 
-module.exports = dbConnect;
+export default dbConnect;

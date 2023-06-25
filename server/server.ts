@@ -1,12 +1,12 @@
 require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const logger = require('morgan');
-const dbConnect = require('./src/configs/db.config');
+import express, { Express } from 'express';
+import cors from 'cors';
+import logger from 'morgan';
+import dbConnect from './src/configs/db.config.js';
 
 const { PORT } = process.env ?? 3001;
 
-const app = express();
+const app: Express = express();
 dbConnect();
 
 app.use(
