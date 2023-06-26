@@ -1,6 +1,6 @@
-import { ThunkAction } from 'redux-thunk';
-import { UserState } from '../init';
-import { SetUserAction, Types } from '../types';
+
+import { Types } from '../types/userTypes';
+import { ThunkAction } from '../types';
 
 export const login =
   (
@@ -8,7 +8,7 @@ export const login =
     email: string,
     firstname: string,
     password: string
-  ): ThunkAction<void, UserState, unknown, SetUserAction> =>
+  ): ThunkAction =>
   async (dispatch) => {
     const response = await fetch('/api/v1/auth/login', {
       method: 'POST',
