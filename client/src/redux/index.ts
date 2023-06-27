@@ -20,3 +20,7 @@ const store: Store = configureStore({
     user: userReducer,
   }
 });
+
+export type RootState = ReturnType<typeof store.getState>
+
+export default store;

@@ -1,4 +1,5 @@
-import { UserActions, Types } from '../types/userTypes';
+import { AnyAction } from '@reduxjs/toolkit';
+import { Types } from '../types/userTypes';
 
 export interface User {
   routes?: string[];
@@ -37,7 +38,7 @@ export const initialUserState = {
 
 export const userReducer = (
   state: UserState = initialUserState,
-  action: UserActions
+  action: AnyAction
 ): UserState => {
   switch (action.type) {
     case Types.SET_USER:
