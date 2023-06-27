@@ -1,4 +1,5 @@
-import { AppActions, AppTypes } from "../types/appTypes";
+import { AnyAction } from "@reduxjs/toolkit";
+import { AppTypes } from "../types/appTypes";
 
 export interface IAppState {
   isAuthenticated: boolean;
@@ -12,7 +13,7 @@ export const initialAppState: IAppState = {
   language: null
 };
 
-const AppReducer = (state: IAppState = initialAppState, action: AppActions) => {
+const AppReducer = (state: IAppState = initialAppState, action: AnyAction) => {
   switch (action.type) {
     case AppTypes.SET_IS_AUTHENTIFICATED:
       return {
