@@ -36,7 +36,7 @@ export const initialUserState = {
   isAuth: false,
 }
 
-export const userReducer = (
+export const UserReducer = (
   state: UserState = initialUserState,
   action: AnyAction
 ): UserState => {
