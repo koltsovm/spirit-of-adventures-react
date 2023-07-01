@@ -5,12 +5,14 @@ export interface IAppState {
   isAuthenticated: boolean;
   isLoginError: boolean;
   language: string | null;
+  isLoginModal: boolean;
 }
 
 export const initialAppState: IAppState = {
   isAuthenticated: false,
   isLoginError: false,
-  language: null
+  language: null,
+  isLoginModal: false,
 };
 
 const AppReducer = (state: IAppState = initialAppState, action: AnyAction) => {

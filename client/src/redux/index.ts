@@ -1,7 +1,8 @@
 import { Store, applyMiddleware, compose, configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import AppReducer from "./reducers/appReducer";
-import { userReducer } from "./reducers/userReducer";
+import { UserReducer } from "./reducers/userReducer";
+import { RoutesReducer } from "./reducers/routesReducer";
 
 const middlewares: any = [thunk];
 
@@ -17,7 +18,8 @@ if (process.env.NODE_ENV === 'development') {
 const store: Store = configureStore({
   reducer: {
     app: AppReducer,
-    user: userReducer,
+    user: UserReducer,
+    routes: RoutesReducer,
   }
 });
 
