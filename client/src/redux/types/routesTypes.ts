@@ -5,6 +5,7 @@ export enum RoutesTypes {
   SET_EDITABLE_ROUTE = 'SET_EDITABLE_ROUTE',
   SET_USER_ROUTES = 'SET_USER_ROUTES',
   SET_LIKED_ROUTES = 'SET_LIKED_ROUTES',
+  ADD_NEW_ROUTE = 'ADD_NEW_ROUTE',
 }
 
 export type Point = {
@@ -19,7 +20,7 @@ export type Route = {
 
 export interface ISetRoutesList extends AnyAction {
   type: RoutesTypes.SET_ROUTES_LIST,
-  payload: Route,
+  payload: Route[],
 }
 
 export interface ISetEditableRoute extends AnyAction {
@@ -32,13 +33,19 @@ export interface ISetUserRoutes extends AnyAction {
   payload: Route[],
 }
 
-export interface ISetLikedRoutes extends AnyAction {
+export interface ISetLikedRoute extends AnyAction {
   type: RoutesTypes.SET_LIKED_ROUTES,
-  payload: Route[],
+  payload: Route,
+}
+
+export interface IAddNewRoute extends AnyAction {
+  type: RoutesTypes.ADD_NEW_ROUTE,
+  payload: Route,
 }
 
 export type RoutesActions =
   ISetRoutesList |
   ISetEditableRoute |
   ISetUserRoutes |
-  ISetLikedRoutes;
+  ISetLikedRoute |
+  IAddNewRoute;
