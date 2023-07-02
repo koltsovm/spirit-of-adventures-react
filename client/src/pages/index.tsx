@@ -4,14 +4,14 @@ import Footer from '../components/footer/footer';
 import AuthModal from '../components/modals/auth-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux';
-import { setIsLoginModal } from '../redux/actions/appActions';
+import { setIsAuthModal } from '../redux/actions/appActions';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch();
   const { isAuthModal, authType } = useSelector(({ app }: RootState) => app);
 
   const onCloseAuthModal = () => {
-    dispatch(setIsLoginModal(!isAuthModal));
+    dispatch(setIsAuthModal(!isAuthModal));
   }
   return (
     <>

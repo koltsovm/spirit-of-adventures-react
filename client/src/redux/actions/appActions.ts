@@ -21,7 +21,7 @@ export function setLanguage(language: string | null): AppActions {
   }
 }
 
-export function setIsLoginModal(b: boolean): AppActions {
+export function setIsAuthModal(b: boolean): AppActions {
   return {
     type: AppTypes.SET_IS_LOGIN_MODAL,
     payload: b,
