@@ -1,25 +1,26 @@
 import Dialog from '@material-ui/core/Dialog';
 import {} from '../header/header';
 import { LoginForm } from '../forms/login-form';
-import { SignUpForm } from '../forms/sign-up-form';
+import { SignInForm } from '../forms/sign-up-form';
+import { AuthType } from '../../redux/reducers/appReducer';
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  isLoginButton: boolean;
-  isSignUpButton: boolean;
+  authType: AuthType;
 }
 
-export const Modal: React.FC<ModalProps> = ({
+const AuthModal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
-  isLoginButton,
-  isSignUpButton,
+  authType,
 }) => {
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      {isSignUpButton ? <SignUpForm setModal={onClose} /> : null}
-      {isLoginButton ? <LoginForm setModal={onClose} /> : null}
+      {authType === 'signIn' ? <SignInForm setModal={onClose} /> : null}
+      {authType === 'login' ? <LoginForm setModal={onClose} /> : null}
     </Dialog>
   );
 };
+
+export default AuthModal;

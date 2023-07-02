@@ -1,21 +1,25 @@
 import { AnyAction } from "@reduxjs/toolkit";
 import { AppTypes } from "../types/appTypes";
 
-export interface IAppState {
+export type AuthType = 'login' | 'signIn' | null;
+
+export type IAppState = {
   isAuthenticated: boolean;
   isLoginError: boolean;
   language: string | null;
-  isLoginModal: boolean;
+  isAuthModal: boolean;
+  authType: AuthType;
 }
 
 export const initialAppState: IAppState = {
   isAuthenticated: false,
   isLoginError: false,
   language: null,
-  isLoginModal: false,
+  isAuthModal: false,
+  authType: null,
 };
 
-const AppReducer = (state: IAppState = initialAppState, action: AnyAction) => {
+const AppReducer = (state: IAppState = initialAppState, action: AnyAction): IAppState => {
   switch (action.type) {
     case AppTypes.SET_IS_AUTHENTIFICATED:
       return {
@@ -38,7 +42,7 @@ const AppReducer = (state: IAppState = initialAppState, action: AnyAction) => {
     case AppTypes.SET_IS_LOGIN_MODAL:
       return {
         ...state,
-        isLoginModal: action.payload,
+        isAuthModal: action.payload,
       };
 
     default:
