@@ -33,7 +33,14 @@ const AppReducer = (state: IAppState = initialAppState, action: AnyAction) => {
       return {
         ...state,
         language: action.payload,
-      }
+      };
+
+    case AppTypes.SET_IS_LOGIN_MODAL:
+      return {
+        ...state,
+        isLoginModal: action.payload,
+      };
+
     default:
       return state;
   }
