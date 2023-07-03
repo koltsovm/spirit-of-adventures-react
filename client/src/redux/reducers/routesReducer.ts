@@ -14,7 +14,7 @@ export const initialRoutesState: IRoutesState = {
   likedRoutes: [],
 };
 
-export const RoutesReducer = (state: IRoutesState = initialRoutesState, action: AnyAction) => {
+export const RoutesReducer = (state: IRoutesState = initialRoutesState, action: AnyAction): IRoutesState => {
   switch (action.type) {
     default: return state
   }

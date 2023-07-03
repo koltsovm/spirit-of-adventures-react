@@ -3,8 +3,10 @@ import { TextField, GridSize } from '@material-ui/core';
 import { ReactNode } from 'react';
 import { Form } from 'react-final-form';
 import { ButtonTypes } from '../header/header';
+import { useDispatch } from 'react-redux';
+import { setIsAuthModal } from '../../redux/actions/appActions';
 
-interface SignUpProps {
+interface SignInProps {
   setModal: (buttonType: ButtonTypes) => void;
 }
 
@@ -35,9 +37,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const LoginForm = ({ setModal }: SignUpProps) => {
+export const LoginForm = ({ setModal }: SignInProps) => {
+  const dispatch = useDispatch();
+
   const classes = useStyles();
-  const onSubmit = () => {}; // TODO onSubmit func
+  const onSubmit = () => {
+    dispatch(setIsAuthModal(false));
+  }; // TODO onSubmit func
 
   const formFields: FormField[] = [
     {

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const SignUpForm = ({ setModal }: SignUpProps) => {
+export const SignInForm = ({ setModal }: SignUpProps) => {
   const classes = useStyles();
   const onSubmit = () => {}; // TODO onSubmit func
 
