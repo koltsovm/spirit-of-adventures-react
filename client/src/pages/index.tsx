@@ -5,6 +5,7 @@ import AuthModal from '../components/modals/auth-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux';
 import { setIsAuthModal } from '../redux/actions/appActions';
+import AccountPage from './account-page';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export const App: React.FC = () => {
   return (
     <>
       <Header />
+      <AccountPage/>
       <Footer/>
       <AuthModal isOpen={isAuthModal} onClose={onCloseAuthModal} authType={authType}/>
     </>
