@@ -2,15 +2,14 @@ import {
   MenuItem,
   Menu,
 } from '@material-ui/core';
-import { useState } from 'react';
 
 interface IMenuProps {
   menuId: string;
+  anchorEl: null | HTMLElement
+  setAnchorEl: React.Dispatch<React.SetStateAction<null | HTMLElement>>;
 }
 
-const MainMenu = ({ menuId }: IMenuProps) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
+const MainMenu = ({ menuId, anchorEl, setAnchorEl }: IMenuProps) => {
   const isMenuOpen = Boolean(anchorEl);
 
   const handleMenuClose = () => {
