@@ -5,10 +5,7 @@ const AccountPage = () => {
     <Box>
       <Tabs>
         <Tab label='Аккаунт'/>
-        <Tab label=''/>
-        <Tab label=''/>
-        <Tab label=''/>
-        <Tab label=''/>
+        <Tab label='Мои приключения'/>
       </Tabs>
     </Box>
   )
