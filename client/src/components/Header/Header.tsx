@@ -12,8 +12,6 @@ import {
   Typography,
   InputBase,
   Badge,
-  MenuItem,
-  Menu,
   Button,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -22,7 +20,14 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { Modal } from '../modals/auth-modal';
+import MainMenu from '../menu/main-menu';
+import MainMenuMobile from '../menu/main-menu-mobile';
+import AuthModal from '../modals/auth-modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux';
+import { setIsAuthModal } from '../../redux/actions/appActions';
+import { AuthType } from '../../redux/reducers/appReducer';
+// import AuthModal from '../modals/auth-modal';
 
 // Type for button identification when open modal
 export type ButtonTypes = 'login' | 'signup' | string;
@@ -99,20 +104,12 @@ export const Header: React.FC = () => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     useState<null | HTMLElement>(null);
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const dispatch = useDispatch();
+
+  const { isAuthModal, authType } = useSelector(({ app }: RootState) => app);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
-  };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
   };
 
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -120,76 +117,16 @@ export const Header: React.FC = () => {
   };
 
   const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
 
-  // For modal window
-  const [modalState, setModalState] = useState(false);
-  // const [buttonType, setButtonType] = useState('');
-  const [loginButton, setLoginButton] = useState(false);
-  const [signUpButton, setSignUpButton] = useState(false);
+  const onCloseAuthModal = () => {
+    dispatch(setIsAuthModal(false));
+  }
 
-  const toggleModal = () => {
-    setModalState(!modalState);
-    setLoginButton(false);
-    setSignUpButton(false);
+  const onOpenAuthModal = (authType: AuthType) => {
+    dispatch(setIsAuthModal(true));
   };
-
-  const isLoginButton = () => setLoginButton(true);
-  const isSignUpButton = () => setSignUpButton(true);
 
   return (
     <div className={classes.grow}>
@@ -246,8 +183,7 @@ export const Header: React.FC = () => {
             <Button
               color="inherit"
               onClick={() => {
-                toggleModal();
-                isLoginButton();
+                onOpenAuthModal('signIn');
               }}
             >
               Войти
@@ -255,8 +191,7 @@ export const Header: React.FC = () => {
             <Button
               color="inherit"
               onClick={() => {
-                toggleModal();
-                isSignUpButton();
+                onOpenAuthModal('login');
               }}
             >
               Зарегистрироваться
@@ -275,9 +210,15 @@ export const Header: React.FC = () => {
           </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-      <Modal isOpen={modalState} onClose={toggleModal} isLoginButton={loginButton} isSignUpButton={signUpButton} />
+      <MainMenuMobile
+        mobileMenuId={mobileMenuId}
+        mobileMoreAnchorEl={mobileMoreAnchorEl}
+        setMobileMoreAnchorEl={setMobileMoreAnchorEl}/>
+      <MainMenu
+        menuId={menuId}
+        anchorEl={anchorEl}
+        setAnchorEl={setAnchorEl}/>
+      <AuthModal isOpen={isAuthModal} onClose={onCloseAuthModal} authType={authType}/>
     </div>
   );
 };
